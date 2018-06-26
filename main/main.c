@@ -7,6 +7,7 @@
 #include "driver/gpio.h"
 #include "driver/spi_master.h"
 #include "SX1278.h"
+#include "fap/fap.h"
 
 SX1278_hw_t SX1278_hw;
 SX1278_t SX1278;
@@ -42,18 +43,18 @@ void app_main(void)
     ESP_ERROR_CHECK( esp_wifi_connect() );
 
 
-   // LoRa Module Configuration
-	SX1278_hw.dio0.pin = GPIO_NUM_26;
-	SX1278_hw.nss.pin = GPIO_NUM_18;
-	SX1278_hw.reset.pin = GPIO_NUM_14;
-	SX1278.hw = &SX1278_hw;
-
-	printf("Configuring LoRa Radio\r\n");
-	SX1278_begin(&SX1278, SX1278_433MHZ, SX1278_POWER_17DBM, SX1278_LORA_SF_7,
-			SX1278_LORA_BW_20_8KHZ, 10);
-	printf("Completed configuration for LoRa Radio \r\n");
-	//ret = SX1278_LoRaEntryTx(&SX1278, 16, 2000);
-	ret = SX1278_LoRaEntryRx(&SX1278, 16, 2000);
+//   // LoRa Module Configuration
+//	SX1278_hw.dio0.pin = GPIO_NUM_26;
+//	SX1278_hw.nss.pin = GPIO_NUM_18;
+//	SX1278_hw.reset.pin = GPIO_NUM_14;
+//	SX1278.hw = &SX1278_hw;
+//
+//	printf("Configuring LoRa Radio\r\n");
+//	SX1278_begin(&SX1278, SX1278_433MHZ, SX1278_POWER_17DBM, SX1278_LORA_SF_7,
+//			SX1278_LORA_BW_20_8KHZ, 10);
+//	printf("Completed configuration for LoRa Radio \r\n");
+//	//ret = SX1278_LoRaEntryTx(&SX1278, 16, 2000);
+//	ret = SX1278_LoRaEntryRx(&SX1278, 16, 2000);
 
 
 
@@ -75,13 +76,13 @@ void app_main(void)
 
 		printf("Receiving package...\r\n");
 
-		ret = SX1278_LoRaRxPacket(&SX1278);
-		printf("Received: %d\r\n", ret);
-		if (ret > 0) {
-			SX1278_read(&SX1278, (uint8_t *) buffer, ret);
-			printf("Content (%d): %s\r\n", ret, buffer);
-		}
-		printf("Package received ...\r\n");
+//		ret = SX1278_LoRaRxPacket(&SX1278);
+//		printf("Received: %d\r\n", ret);
+//		if (ret > 0) {
+//			SX1278_read(&SX1278, (uint8_t *) buffer, ret);
+//			printf("Content (%d): %s\r\n", ret, buffer);
+//		}
+//		printf("Package received ...\r\n");
 
 		vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
