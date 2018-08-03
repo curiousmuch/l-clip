@@ -29,7 +29,7 @@
             			
             <storageModule moduleId="cdtBuildSystem" version="4.0.0">
                 				
-                <configuration buildProperties="" description="" id="cdt.managedbuild.toolchain.gnu.cross.base.419781380" name="Default" parent="org.eclipse.cdt.build.core.emptycfg">
+                <configuration artifactName="${ProjName}" buildProperties="" description="" id="cdt.managedbuild.toolchain.gnu.cross.base.419781380" name="Default" parent="org.eclipse.cdt.build.core.emptycfg">
                     					
                     <folderInfo id="cdt.managedbuild.toolchain.gnu.cross.base.419781380.2109937239" name="/" resourcePath="">
                         						
@@ -41,7 +41,15 @@
                             							
                             <targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross.1531043084" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
                             							
-                            <builder id="cdt.managedbuild.builder.gnu.cross.150242133" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="cdt.managedbuild.builder.gnu.cross"/>
+                            <builder id="cdt.managedbuild.builder.gnu.cross.150242133" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="cdt.managedbuild.builder.gnu.cross">
+                                								
+                                <outputEntries>
+                                    									
+                                    <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="outputPath" name=""/>
+                                    								
+                                </outputEntries>
+                                							
+                            </builder>
                             							
                             <tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.2145751327" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler">
                                 								
@@ -59,7 +67,11 @@
                                     									
                                     <listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/log/include&quot;"/>
                                     									
-                                    <listOptionValue builtIn="false" value="&quot;${workspace_loc:/L-Puck/build/include}&quot;"/>
+                                    <listOptionValue builtIn="false" value="/home/curiousmuch/esp/l-puck/build/include"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/soc/include&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="/home/curiousmuch/esp/l-puck/components/sx127x/include"/>
                                     								
                                 </option>
                                 								
@@ -92,6 +104,62 @@
                             <tool id="cdt.managedbuild.tool.gnu.cross.assembler.1973282945" name="Cross GCC Assembler" superClass="cdt.managedbuild.tool.gnu.cross.assembler">
                                 								
                                 <inputType id="cdt.managedbuild.tool.gnu.assembler.input.1464046868" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+                                							
+                            </tool>
+                            						
+                        </toolChain>
+                        					
+                    </folderInfo>
+                    					
+                    <folderInfo id="cdt.managedbuild.toolchain.gnu.cross.base.419781380.2115735532" name="/" resourcePath="main">
+                        						
+                        <toolChain id="cdt.managedbuild.toolchain.gnu.cross.base.1555655163" name="Cross GCC" superClass="cdt.managedbuild.toolchain.gnu.cross.base" unusedChildren="">
+                            							
+                            <option id="cdt.managedbuild.option.gnu.cross.prefix.166535459.1211612025" name="Prefix" superClass="cdt.managedbuild.option.gnu.cross.prefix.166535459"/>
+                            							
+                            <option id="cdt.managedbuild.option.gnu.cross.path.1275651423.1202659140" name="Path" superClass="cdt.managedbuild.option.gnu.cross.path.1275651423"/>
+                            							
+                            <tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.1721467609" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler.2145751327">
+                                								
+                                <option id="gnu.c.compiler.option.include.paths.853724928" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/esp32/include&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/newlib/include&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/freertos/include&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/nvs_flash/include&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/driver/include&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/log/include&quot;"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="/home/curiousmuch/esp/l-puck/build/include"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="&quot;${IDF_PATH}/components/soc/include&quot;"/>
+                                    								
+                                </option>
+                                								
+                                <inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1903375731" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+                                							
+                            </tool>
+                            							
+                            <tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1741922280" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler.977960802">
+                                								
+                                <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.352083712" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+                                							
+                            </tool>
+                            							
+                            <tool id="cdt.managedbuild.tool.gnu.cross.c.linker.453874245" name="Cross GCC Linker" superClass="cdt.managedbuild.tool.gnu.cross.c.linker.1826290587"/>
+                            							
+                            <tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.1402764302" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker.1737805682"/>
+                            							
+                            <tool id="cdt.managedbuild.tool.gnu.cross.archiver.306861245" name="Cross GCC Archiver" superClass="cdt.managedbuild.tool.gnu.cross.archiver.1257803150"/>
+                            							
+                            <tool id="cdt.managedbuild.tool.gnu.cross.assembler.731540791" name="Cross GCC Assembler" superClass="cdt.managedbuild.tool.gnu.cross.assembler.1973282945">
+                                								
+                                <inputType id="cdt.managedbuild.tool.gnu.assembler.input.6512020" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
                                 							
                             </tool>
                             						

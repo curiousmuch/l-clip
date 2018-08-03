@@ -1,0 +1,88 @@
+# ReadMe 
+These files were pulled from the LoRaMac-node repo and will be modifed for use with the ESP32. 
+This is sadly the processor I'm currently working with even that it's shit. 
+
+## Example Main.c for CW transmission 
+#include <string.h>
+#include "board.h"
+#include "radio.h"
+
+#define RF_FREQUENCY                                868000000 // Hz
+#define TX_OUTPUT_POWER                             14        // 14 dBm
+
+#define FSK_FDEV                                    0         // Hz
+#define FSK_DATARATE                                50e3      // bps
+#define FSK_BANDWIDTH                               50e3      // Hz
+#define FSK_AFC_BANDWIDTH                           83.333e3  // Hz
+#define FSK_PREAMBLE_LENGTH                         5         // Same for Tx and Rx
+#define FSK_FIX_LENGTH_PAYLOAD_ON                   true
+
+int main( void )
+{
+    // Target board initialisation
+    BoardInitMcu( );
+    BoardInitPeriph( );
+
+    // Radio initialization
+    Radio.Init( NULL );
+
+    Radio.SetChannel( RF_FREQUENCY );
+
+    Radio.SetTxConfig( MODEM_FSK, TX_OUTPUT_POWER, FSK_FDEV, 0,
+                                  FSK_DATARATE, 0,
+                                  FSK_PREAMBLE_LENGTH, FSK_FIX_LENGTH_PAYLOAD_ON,
+                                  true, 0, 0, 0, 3000000 );
+
+    TimerInit( &Led4Timer, OnLed4TimerEvent ); 
+    TimerSetValue( &Led4Timer, 90000 );
+
+    TimerInit( &Led2Timer, OnLed2TimerEvent ); 
+    TimerSetValue( &Led2Timer, 90000 );
+
+    TimerInit( &Led3Timer, OnLed3TimerEvent ); 
+    TimerSetValue( &Led3Timer, 90000 );
+
+    // Switch LED 1 ON
+    GpioWrite( &Led4, 0 );
+    TimerStart( &Led4Timer );
+
+    // Sets the radio in Tx mode
+    Radio.Send( NULL, 0 );
+
+    // Blink LEDs just to show some activity
+    while( 1 )
+    {
+        if( Led4TimerEvent == true )
+        {
+            Led4TimerEvent = false;
+
+            // Switch LED 4 OFF
+            GpioWrite( &Led4, 4 );
+            // Switch LED 2 ON
+            GpioWrite( &Led2, 0 );
+            TimerStart( &Led2Timer );
+        }
+
+        if( Led2TimerEvent == true )
+        {
+            Led2TimerEvent = false;
+
+            // Switch LED 2 OFF
+            GpioWrite( &Led2, 1 );
+            // Switch LED 3 ON
+            GpioWrite( &Led3, 0 );
+            TimerStart( &Led3Timer );
+        }
+
+        if( Led3TimerEvent == true )
+        {
+            Led3TimerEvent = false;
+
+            // Switch LED 3 OFF
+            GpioWrite( &Led3, 1 );
+            // Switch LED 1 ON
+            GpioWrite( &Led4, 0 );
+            TimerStart( &Led4Timer );
+        }    
+    }
+}
